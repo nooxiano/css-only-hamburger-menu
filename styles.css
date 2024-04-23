@@ -6,14 +6,15 @@
 
 body {
   margin: 0;
+  background-color: black;
 }
 
 :root {
-  --bar-width: 60px;
-  --bar-height: 8px;
-  --hamburger-gap: 6px;
-  --foreground: #333;
-  --background: white;
+  --bar-width: 30px;
+  --bar-height: 2px;
+  --hamburger-gap: 8px;
+  --foreground: white;
+  --background: #333;
   --hamburger-margin: 8px;
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
@@ -30,12 +31,6 @@ body {
   top: var(--hamburger-margin);
   left: var(--hamburger-margin);
   z-index: 2;
-  cursor: pointer;
-}
-
-.hamburger-menu:has(input:checked) {
-  --foreground: white;
-  --background: #333;
 }
 
 .hamburger-menu:has(input:focus-visible)::before,
@@ -52,11 +47,9 @@ body {
   width: var(--bar-width);
   height: var(--bar-height);
   background-color: var(--foreground);
-  border-radius: 9999px;
   transform-origin: left center;
   transition: opacity var(--animation-timing), width var(--animation-timing),
-    rotate var(--animation-timing), translate var(--animation-timing),
-    background-color var(--animation-timing);
+    rotate var(--animation-timing), translate var(--animation-timing);
 }
 
 .hamburger-menu input {
@@ -85,16 +78,16 @@ body {
 }
 
 .sidebar {
-  transition: translate var(--animation-timing);
-  translate: -100%;
+  transition: transform var(--animation-timing);
+  transform: translateY(-100%);
   padding: 0.5rem 1rem;
   padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
-  background-color: var(--foreground);
-  color: var(--background);
-  max-width: 10rem;
+  background-color: var(--background);
+  color: var(--foreground);
   min-height: 100vh;
+  min-width: 100vw;
 }
 
 .hamburger-menu:has(input:checked) + .sidebar {
-  translate: 0;
+  transform: translateY(0);
 }
